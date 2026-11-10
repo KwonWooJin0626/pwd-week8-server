@@ -23,7 +23,7 @@ Supabase 프로젝트 `joovhrxjefwmydoaezrx`에 `supabase/schema.sql`, 이어서
 npm run db:check
 ```
 
-클라이언트에서 이메일 가입을 완료한 뒤 최초 관리자를 지정합니다.
+지정한 본인 이메일의 최초 관리자 계정은 생성·활성화했습니다. 임시 로그인 정보는 Git에서 제외한 `.env.admin.local`에 저장했습니다. 로그인 후 내 정보에서 임시 비밀번호를 변경합니다. 이후 다른 가입 계정의 역할을 바꾸려면 아래 명령을 사용합니다.
 
 ```powershell
 npm run change-user-type -- 본인의가입이메일 admin
@@ -67,10 +67,10 @@ npm run test:live
 
 ## Render 배포
 
-`render.yaml`에 무료 Node 웹 서비스의 빌드·시작·health check를 준비했습니다. Render에서 이 GitHub 저장소를 Blueprint로 연결한 후 `SUPABASE_SECRET_KEY`, `SUPABASE_PUBLISHABLE_KEY`, `CLIENT_URL`을 입력합니다. `CLIENT_URL`에는 실제 Vercel origin과 필요시 로컬 origin을 쉼표로 연결합니다.
+`render.yaml`로 신규 무료 Node 웹 서비스를 배포했습니다. 주소는 `https://pwd-week8-server-kwonwoojin-hpek.onrender.com`이며 `/health`, 공개 조회, 실제 관리자 로그인 후 `/api/auth/me`·사용자 목록의 200 응답을 확인했습니다. Render에 서버 환경변수를 적용했으며 `CLIENT_URL`에는 실제 Vercel origin과 로컬 origin을 등록했습니다.
 
-Render가 부여한 실제 HTTPS 주소를 클라이언트 Vercel 환경변수 `VITE_API_BASE_URL`에 등록합니다. `/api`를 붙이지 않습니다. Supabase와 외부 공급자의 주소 설정에도 Vercel 주소를 추가합니다.
+실제 HTTPS API 주소를 클라이언트 Vercel 환경변수 `VITE_API_BASE_URL`에 등록했습니다. 클라이언트 공개 운영 주소는 `https://pwd-week8-client-ashy.vercel.app`입니다. Supabase와 외부 공급자의 주소 설정에도 이 Vercel 주소를 추가해야 합니다.
 
-서버 키·DB 준비·실제 Auth/API 통합 검증은 완료했습니다. 본인 계정의 가입·최초 관리자 지정, 소셜 공급자 설정과 실제 소셜 로그인, Render 배포는 진행 중입니다. GitHub·배포 진행 결과는 클라이언트의 `SETUP_STATUS.md`에 기록합니다.
+서버 키·DB 준비·실제 Auth/API 통합 검증·최초 관리자 지정·Render 배포·Vercel 배포는 완료했습니다. Supabase URL Configuration, Google·네이버 앱 발급·공급자 설정과 실제 소셜 로그인은 남아 있습니다. GitHub·배포 진행 결과는 클라이언트의 `SETUP_STATUS.md`, 외부 설정 단계는 `OAUTH_SETUP.md`에 기록합니다.
 
 참고: [Render Blueprint 규격](https://render.com/docs/blueprint-spec), [Supabase Google 로그인](https://supabase.com/docs/guides/auth/social-login/auth-google), [Supabase Redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls).
