@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: pwd-week8-server-kwonwoojin
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        value: https://joovhrxjefwmydoaezrx.supabase.co
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: CLIENT_URL
+        sync: false
