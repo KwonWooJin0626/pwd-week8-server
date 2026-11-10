@@ -4,7 +4,7 @@
 
 ## 로컬 실행
 
-Node.js 24.x를 사용합니다. `.env`의 URL·포트·공개 키는 현재 클라이언트와 맞췄습니다. 서버용 `SUPABASE_SECRET_KEY`는 같은 Supabase 프로젝트의 실제 Secret key를 직접 입력해야 합니다. 이 값은 프런트엔드나 GitHub에 넣지 않습니다.
+Node.js 24.x를 사용합니다. `.env`의 URL·포트·공개 키는 현재 클라이언트와 맞췄습니다. 같은 프로젝트의 서버용 `SUPABASE_SECRET_KEY`도 로컬 파일에 입력되었습니다. 이 값은 프런트엔드나 GitHub에 넣지 않습니다.
 
 ```powershell
 npm ci --include=dev
@@ -17,7 +17,7 @@ npm run dev
 
 ## DB 준비
 
-Supabase 프로젝트 `joovhrxjefwmydoaezrx`의 SQL Editor에서 `supabase/schema.sql`, 이어서 `supabase/seed.sql`을 실행합니다. schema는 프로필·맛집·제보 테이블, Auth 프로필 트리거, 관리자 역할과 제보 승인 RPC, 테이블 접근 권한을 준비합니다. seed는 맛집 목록이 비었을 때만 예시 데이터를 넣습니다.
+Supabase 프로젝트 `joovhrxjefwmydoaezrx`에 `supabase/schema.sql`, 이어서 `supabase/seed.sql`을 적용했습니다. schema는 프로필·맛집·제보 테이블, Auth 프로필 트리거, 관리자 역할과 제보 승인 RPC, 테이블 접근 권한을 준비합니다. seed는 맛집 목록이 비었을 때만 예시 데이터를 넣습니다. 현재 기본 맛집 3건이 등록되어 있으며 SQL을 다시 수동 실행할 필요는 없습니다.
 
 ```powershell
 npm run db:check
@@ -51,7 +51,7 @@ npm run auth:check
 npm run test:live
 ```
 
-로컬 API·서비스·공급자 테스트 58개와 PostgreSQL 동작 테스트 10개가 통과했습니다. `test:live`는 실제 Supabase에 이번 검사 전용 계정과 데이터를 생성한 뒤 정리합니다. 실제 DB 스키마·서버 키가 준비되어야 실행할 수 있습니다.
+로컬 API·서비스·공급자 테스트 58개와 PostgreSQL 동작 테스트 10개가 통과했습니다. `test:live`도 실제 Supabase에서 통과했습니다. 이 검사는 이번 검사 전용 계정과 데이터를 생성한 뒤 정리하며 기존 맛집 3건이 보존됐는지 확인합니다.
 
 `/health` 성공은 서버 프로세스 확인이며 DB·로그인 준비 완료와는 별도입니다.
 
@@ -71,6 +71,6 @@ npm run test:live
 
 Render가 부여한 실제 HTTPS 주소를 클라이언트 Vercel 환경변수 `VITE_API_BASE_URL`에 등록합니다. `/api`를 붙이지 않습니다. Supabase와 외부 공급자의 주소 설정에도 Vercel 주소를 추가합니다.
 
-서버 키·DB 준비 및 공급자 설정, Render 배포와 실제 계정 검증은 아직 완료되지 않았습니다. GitHub·배포 진행 결과는 클라이언트의 `SETUP_STATUS.md`에 기록합니다.
+서버 키·DB 준비·실제 Auth/API 통합 검증은 완료했습니다. 본인 계정의 가입·최초 관리자 지정, 소셜 공급자 설정과 실제 소셜 로그인, Render 배포는 진행 중입니다. GitHub·배포 진행 결과는 클라이언트의 `SETUP_STATUS.md`에 기록합니다.
 
 참고: [Render Blueprint 규격](https://render.com/docs/blueprint-spec), [Supabase Google 로그인](https://supabase.com/docs/guides/auth/social-login/auth-google), [Supabase Redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls).
